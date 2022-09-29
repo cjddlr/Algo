@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/chungikyu/Desktop/Algo/Algo.csproj": {}
+    "C:\\Users\\cjddl\\Desktop\\Algo\\Algo.csproj": {}
   },
   "projects": {
-    "/Users/chungikyu/Desktop/Algo/Algo.csproj": {
+    "C:\\Users\\cjddl\\Desktop\\Algo\\Algo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/chungikyu/Desktop/Algo/Algo.csproj",
+        "projectUniqueName": "C:\\Users\\cjddl\\Desktop\\Algo\\Algo.csproj",
         "projectName": "Algo",
-        "projectPath": "/Users/chungikyu/Desktop/Algo/Algo.csproj",
-        "packagesPath": "/Users/chungikyu/.nuget/packages/",
-        "outputPath": "/Users/chungikyu/Desktop/Algo/obj/",
+        "projectPath": "C:\\Users\\cjddl\\Desktop\\Algo\\Algo.csproj",
+        "packagesPath": "C:\\Users\\cjddl\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\cjddl\\Desktop\\Algo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/chungikyu/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\cjddl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -53,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.401/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
