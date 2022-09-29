@@ -1,0 +1,15 @@
+/Users/chungikyu/Desktop/Algo/bin/Debug/net6.0/Algo
+/Users/chungikyu/Desktop/Algo/bin/Debug/net6.0/Algo.deps.json
+/Users/chungikyu/Desktop/Algo/bin/Debug/net6.0/Algo.runtimeconfig.json
+/Users/chungikyu/Desktop/Algo/bin/Debug/net6.0/Algo.dll
+/Users/chungikyu/Desktop/Algo/bin/Debug/net6.0/Algo.pdb
+/Users/chungikyu/Desktop/Algo/obj/Debug/net6.0/Algo.csproj.AssemblyReference.cache
+/Users/chungikyu/Desktop/Algo/obj/Debug/net6.0/Algo.GeneratedMSBuildEditorConfig.editorconfig
+/Users/chungikyu/Desktop/Algo/obj/Debug/net6.0/Algo.AssemblyInfoInputs.cache
+/Users/chungikyu/Desktop/Algo/obj/Debug/net6.0/Algo.AssemblyInfo.cs
+/Users/chungikyu/Desktop/Algo/obj/Debug/net6.0/Algo.csproj.CoreCompileInputs.cache
+/Users/chungikyu/Desktop/Algo/obj/Debug/net6.0/Algo.dll
+/Users/chungikyu/Desktop/Algo/obj/Debug/net6.0/refint/Algo.dll
+/Users/chungikyu/Desktop/Algo/obj/Debug/net6.0/Algo.pdb
+/Users/chungikyu/Desktop/Algo/obj/Debug/net6.0/Algo.genruntimeconfig.cache
+/Users/chungikyu/Desktop/Algo/obj/Debug/net6.0/ref/Algo.dll
