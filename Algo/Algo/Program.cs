@@ -12,9 +12,17 @@ namespace Algo
 
         static void Main(string[] args)
         {
-            QuickSort(arr, 0, arr.Length - 1);
+            ArrayList<int> aArr = new ArrayList<int>();
+            aArr.AddLast(1);
+            aArr.AddLast(2);
+            aArr.AddLast(3);
+            aArr.AddLast(4);
+            aArr.AddLast(5);
 
-            PrintAll(arr);
+            foreach (var each in aArr.arr)
+            {
+                Console.WriteLine(each);
+            }
         }
 
         static void QuickSort(int[] arr, int L, int R)
@@ -384,6 +392,192 @@ namespace Algo
                 current = current.Next;
             }
             Console.WriteLine(current.data);
+        }
+    }
+
+    class ArrayList<T>
+    {
+        public ArrayList()
+        {
+            size = 0;
+            arr = new T[size];
+        }
+
+        public T[] arr;
+        int size;
+
+        public void AddAt(int index, T data)
+        {
+            if (index < 0)
+            {
+                IndexError();
+                return;
+            }
+            else
+            {
+                if (size == 0)
+                {
+                    AddFirstTime(data);
+                    return;
+                }
+
+                if (index == 0)
+                {
+                    AddFirst(data);
+                    return;
+                }
+
+                if (index == size - 1)
+                {
+                    AddLast(data);
+                    return;
+                }
+
+                if (index > size - 1)
+                {
+                    AddLast(data);
+                    return;
+                }
+
+                size++;
+                T[] tempArray = new T[size];
+
+                Array.Copy(arr, 0, tempArray, 0, index);
+                Array.Copy(arr, index, tempArray, index + 1, arr.Length - index);
+                arr = tempArray;
+                arr[index] = data;
+            }
+        }
+
+        public void AddFirst(T data)
+        {
+            if (size == 0)
+            {
+                AddFirstTime(data);
+                return;
+            }
+
+            T[] tempArr = new T[size++];
+
+            Array.Copy(arr, 0, tempArr, 1, size - 1);
+
+            arr = tempArr;
+            arr[0] = data;
+        }
+
+        public void AddLast(T data)
+        {
+            if (size == 0)
+            {
+                AddFirstTime(data);
+                return;
+            }
+
+            size++;
+            T[] tempArr = new T[size];
+            Array.Copy(arr, 0, tempArr, 0, size - 1);
+            arr = tempArr;
+            arr[size - 1] = data;
+        }
+
+        public void AddFirstTime(T data)
+        {
+            size++;
+            T[] tempArr = new T[size];
+
+            arr = tempArr;
+            arr[0] = data;
+        }
+
+        public T Get(int index)
+        {
+            if (index > size - 1)
+            {
+                IndexError();
+            }
+
+            return arr[index];
+        }
+
+        public void RemoveAt(int index)
+        {
+            if (index < 0 || index > size - 1)
+            {
+                IndexError();
+                return;
+            }
+            else
+            {
+                if (size == 1)
+                {
+                    size--;
+                    arr = new T[size];
+                }
+                else if (index == 0)
+                {
+                    RemoveFirst();
+                }
+                else if (index == size - 1)
+                {
+                    RemoveLast();
+                }
+                else
+                {
+                    size--;
+                    T[] tempArr = new T[size];
+
+                    Array.Copy(arr, 0, tempArr, 0, 2);
+                    Array.Copy(arr, index+1, tempArr, index, arr.Length - index - 1);
+
+                    arr = tempArr;
+                }
+            }
+        }
+
+        public void RemoveFirst()
+        {
+            if (size <= 0)
+            {
+                IndexError();
+                return;
+            }
+            else if (size == 1)
+            {
+                arr = new T[0];
+            }
+
+            size--;
+            T[] tempArr = new T[size];
+            Array.Copy(arr, 1, tempArr, 0, arr.Length - 1);
+            arr = tempArr;
+        }
+
+        public void RemoveLast()
+        {
+            if (size <= 0)
+            {
+                IndexError();
+                return;
+            }
+            else if (size == 1)
+            {
+                arr = new T[0];
+            }
+
+            size--;
+            T[] tempArr = new T[size];
+            Array.Copy(arr, 0, tempArr, 0, arr.Length - 1);
+            arr = tempArr;
+        }
+
+        public void IndexError()
+        {
+            Console.WriteLine("Index out of range");
+        }
+
+        public int Count()
+        {
+            return size;
         }
     }
 
