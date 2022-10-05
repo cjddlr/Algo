@@ -12,17 +12,16 @@ namespace Algo
 
         static void Main(string[] args)
         {
-            ArrayList<int> aArr = new ArrayList<int>();
-            aArr.AddLast(1);
-            aArr.AddLast(2);
-            aArr.AddLast(3);
-            aArr.AddLast(4);
-            aArr.AddLast(5);
+            LinkedList lList = new LinkedList();
+            lList.AddFirst(1);
+            lList.AddLast(2);
+            lList.AddLast(3);
+            lList.AddLast(4);
+            lList.AddLast(5);
 
-            foreach (var each in aArr.arr)
-            {
-                Console.WriteLine(each);
-            }
+            lList.RemoveLast();
+            lList.PrintAll();
+
         }
 
         static void QuickSort(int[] arr, int L, int R)
@@ -324,77 +323,6 @@ namespace Algo
         private Node[] buckets;
     }
 
-    class LinkedList
-    {
-        Node head;
-
-        class Node
-        {
-            public Node(int data)
-            {
-                this.data = data;
-            }
-            public Node Next;   //For linear probing
-            public int data;
-        }
-
-        public void AddFirst(int data)
-        {
-            Node newNode = new Node(data);
-
-            if (head == null)
-            {
-                head = newNode;
-                return;
-            }
-
-            newNode.Next = head;
-            head = newNode;
-        }
-
-        public void AddLast(int data)
-        {
-            Node newNode = new Node(data);
-
-            if (head == null)
-            {
-                head = newNode;
-                return;
-            }
-
-            Node current = head;
-
-            while (current.Next != null)
-                current = current.Next;
-
-            current.Next = newNode;
-        }
-
-        public int Find(int data)
-        {
-            Node current = head;
-
-            while (current.data != data)
-            {
-                current = current.Next;
-            }
-
-            return current.data;
-        }
-
-        public void PrintAll()
-        {
-            Node current = head;
-
-            while (current.Next != null)
-            {
-                Console.WriteLine(current.data);
-                current = current.Next;
-            }
-            Console.WriteLine(current.data);
-        }
-    }
-
     class ArrayList<T>
     {
         public ArrayList()
@@ -575,9 +503,36 @@ namespace Algo
             Console.WriteLine("Index out of range");
         }
 
+        public int GetSize()
+        {
+            return size;
+        }
+
+        public int IndexOf(T data)
+        {
+            for(int i=0; i<size; i++)
+            {
+                if (arr[i].Equals(data))
+                    return i;
+            }
+            return -1;
+        }
+
         public int Count()
         {
             return size;
+        }
+
+        public ListIterator listIterator()
+        {
+            return new ListIterator();
+        }
+
+        public class ListIterator
+        {
+            private int nextIndex = 0;
+
+
         }
     }
 
