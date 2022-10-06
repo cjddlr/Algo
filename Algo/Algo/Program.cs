@@ -12,16 +12,25 @@ namespace Algo
 
         static void Main(string[] args)
         {
-            LinkedList lList = new LinkedList();
-            lList.AddFirst(1);
-            lList.AddLast(2);
-            lList.AddLast(3);
-            lList.AddLast(4);
-            lList.AddLast(5);
+            DoublyLinkedList dlList = new DoublyLinkedList();
+            dlList.AddLast(1);
+            dlList.AddLast(2);
+            dlList.AddLast(3);
+            dlList.AddLast(4);
+            dlList.AddLast(5);
+            dlList.AddLast(6);
+            dlList.AddLast(7);
 
-            lList.RemoveLast();
-            lList.PrintAll();
+            dlList.RemoveFirst();
+            dlList.RemoveLast();
 
+            dlList.AddFirst(99);
+            dlList.AddLast(88);
+
+            dlList.RemoveAt(2);
+
+
+            dlList.PrintAll();
         }
 
         static void QuickSort(int[] arr, int L, int R)
