@@ -12,25 +12,7 @@ namespace Algo
 
         static void Main(string[] args)
         {
-            DoublyLinkedList dlList = new DoublyLinkedList();
-            dlList.AddLast(1);
-            dlList.AddLast(2);
-            dlList.AddLast(3);
-            dlList.AddLast(4);
-            dlList.AddLast(5);
-            dlList.AddLast(6);
-            dlList.AddLast(7);
 
-            dlList.RemoveFirst();
-            dlList.RemoveLast();
-
-            dlList.AddFirst(99);
-            dlList.AddLast(88);
-
-            dlList.RemoveAt(2);
-
-
-            dlList.PrintAll();
         }
 
         static void QuickSort(int[] arr, int L, int R)
@@ -150,39 +132,6 @@ namespace Algo
         public bool isEmpty()
         {
             return items.Length == 0 ? true : false;
-        }
-    }
-
-    class LinkedStack<T>
-    {
-        public LinkedStack()
-        {
-            list = new LinkedList<T>();
-        }
-
-        LinkedList<T> list;
-
-        public void Push(T value)
-        {
-            list.AddFirst(value);
-        }
-
-        public T Pop()
-        {
-            var result = list.First.Value;
-            list.RemoveFirst();
-
-            return result;
-        }
-
-        public void Clear()
-        {
-            list.Clear();
-        }
-
-        public bool isEmpty()
-        {
-            return list.Count == 0 ? true : false;
         }
     }
 
