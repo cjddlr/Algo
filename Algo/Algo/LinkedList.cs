@@ -4,16 +4,27 @@ using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization.Advanced;
 
 namespace Algo
 {
     public class LinkedList
     {
+        public LinkedList()
+        {
+            head = new Node();
+        }
+
         Node head;
         Node tail;
+        int size = 0;
 
-        class Node
+        public class Node
         {
+            public Node()
+            {
+            }
+
             public Node(int data)
             {
                 this.data = data;
@@ -23,116 +34,70 @@ namespace Algo
             public Node next;
         }
 
-        public void AddFirst(int data)
+        public void AddAt(int index, int data)
         {
+            Node current = head;
+
             Node newNode = new Node(data);
 
-            if (head == null)
+            if(size == 0)
             {
                 head = newNode;
                 tail = head;
+                size++;
                 return;
             }
 
-            newNode.next = head;
-            head = newNode;
+            while(index > 0)
+            {
+                current = current.next;
+                index--;
+            }
+
+            var temp1 = current.next;
+            newNode.next = temp1;
+            current.next = newNode;
+            tail = newNode;
+            size++;
+        }
+
+        public void AddFirst(int data)
+        {
+            AddAt(0, data);
         }
 
         public void AddLast(int data)
         {
-            Node newNode = new Node(data);
-            Node current = head;
-
-            if (head == null)
-            {
-                head = newNode;
-                return;
-            }
-
-            while (current.next != null)
-            {
-                current = current.next;
-            }
-
-            current.next = newNode;
+            AddAt(size - 1, data);
         }
 
-        public void AddAt(int index, int data)
+        public void RemoveAt()
         {
-            Node newNode = new Node(data);
-            Node temp1 = head;
 
-            index -= 1;
-            while (index > 0)
-            {
-                temp1 = temp1.next;
-                index--;
-            }
-
-            Node temp2 = temp1.next;
-
-            newNode.next = temp2;
-            temp1.next = newNode;
-
-            //index가 0일때와 마지막일때가 처리 안 됐음
         }
 
         public void RemoveFirst()
         {
-            Node temp = head.next;
-            head = null;
-            head = temp;
+
         }
 
         public void RemoveLast()
         {
-            Node current = head;
 
-            while (current.next != null)
-                current = current.next;
-
-            current.next = null;
-        }
-
-        public void RemoveAt(int index)
-        {
-            if (index == 0)
-            {
-                RemoveFirst();
-                return;
-            }
-
-            Node temp1 = head;
-
-            index--;
-            while (index > 0)
-            {
-                temp1 = temp1.next;
-                index--;
-            }
-
-            Node temp2 = temp1.next.next;
-            temp1.next = null;
-            temp1.next = temp2;
         }
 
         public void PrintAll()
         {
-            Node current;
+            Node current = head;
 
-            if (head != null && tail != null)
+            do
             {
-                current = head;
-
-                do
-                {
-                    Console.WriteLine(current.data);
-                    current = current.next;
-                }
-                while (current.next != null);
-
                 Console.WriteLine(current.data);
+                current = current.next;
             }
+            while (current.next != null);
+
+            Console.WriteLine(current.data);
         }
     }
 }
