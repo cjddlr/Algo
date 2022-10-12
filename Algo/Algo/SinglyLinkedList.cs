@@ -84,12 +84,20 @@ namespace Algo
                 return;
             }
 
-            while (current.next != null)
-                current = current.next;
+            ////Tail 없을때
+            //while (current.next != null)
+            //    current = current.next;
 
-            current.next = newNode;
+            //current.next = newNode;
+            //tail = newNode;
+            //size++;
+
+
+            //Tail 있을 때
+            tail.next = newNode;
             tail = newNode;
             size++;
+
         }
 
         public void RemoveAt(int index)

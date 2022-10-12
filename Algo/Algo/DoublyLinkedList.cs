@@ -9,14 +9,14 @@ namespace Algo
     public class DoublyLinkedList
     {
         Node head;
-        Node tail;
+        public Node tail;
         int size;
 
-        class Node
+        public class Node
         {
             public Node(int data)
             {
-                this.data = data; 
+                this.data = data;
             }
 
             public int data;
@@ -24,14 +24,75 @@ namespace Algo
             public Node next;
         }
 
+        public void AddAt(int index, int data)
+        {
+            Node newNode = new Node(data);
+            Node current;
+
+            if(head == null)
+            {
+                head = newNode;
+                tail = head;
+                size++;
+                return;
+            }
+
+            if (index == 0)
+            {
+                AddFirst(data);
+                return;
+            }
+            else if (index >= size - 1)
+            {
+                AddLast(data);
+                return;
+            }
+
+            if (index > size/2) //Tail에서 접근하는 게 이득
+            {
+                current = tail;
+
+                var count = size - index;
+
+                while (--index != 0)
+                    current = current.prev;
+
+                Node temp1 = current.prev;
+                Node temp2 = current;
+
+                temp1.next = newNode;
+                newNode.next = temp2;
+                temp2.prev = newNode;
+                newNode.prev = temp1;
+
+                size++;
+            }
+            else                //Head에서 접근하는 게 이득
+            {
+                current = head;
+
+                while (--index != 0)
+                    current = current.next;
+
+                Node temp1 = current;
+                Node temp2 = current.next;
+
+                temp1.next = newNode;
+                newNode.next = temp2;
+                temp2.prev = newNode;
+                newNode.prev = temp1;
+
+                size++;
+            }
+        }
+
         public void AddFirst(int data)
         {
             Node newNode = new Node(data);
 
-            if (size == 0)
+            if (head == null)
             {
                 head = newNode;
-                tail = head;
                 size++;
                 return;
             }
@@ -45,165 +106,72 @@ namespace Algo
         public void AddLast(int data)
         {
             Node newNode = new Node(data);
+            Node current = head;
 
-            if (size == 0)
+            if (head == null)
             {
-                AddFirst(data);
+                head = newNode;
+                tail = head;
+                size++;
                 return;
             }
 
-            Node temp1 = tail;
+            while (current.next != null)
+                current = current.next;
 
-            tail.next = newNode;
+            //Tail 없을 때
+            current.next = newNode;
+            newNode.prev = current;
             tail = newNode;
-            tail.prev = temp1;
-
             size++;
+
+            //Tail 있을 때
+            //tail.next = newNode;
+            //newNode.prev = tail;
+            //tail = newNode;
+            //size++;
         }
 
-        public void AddAt(int index, int data)
+        public void RemoveAt()
         {
-            if(size == 0)
-            {
-                AddFirst(data);
-                return;
-            }
-
-            if (index == 0)
-            {
-                AddFirst(data);
-                return;
-            }
-            else if (index == size-1 || index > size-1)
-            {
-                AddLast(data);
-                return;
-            }
-
-            Node newNode = new Node(data);
-
-            Node current;
-
-            if (index > size/2)
-            {
-                current = tail;
-
-                int step = (size - 1) - index;
-
-                while(step != 0)
-                {
-                    current = current.prev;
-                    step--;
-                }
-            }
-            else
-            {
-                current = head;
-
-                while (index != 0)
-                {
-                    current = current.next;
-                    index--;
-                }
-            }
-
-            Node temp1 = current.prev;
-            Node temp2 = current.next;
-
-            temp1.next = newNode;
-            newNode.prev = temp1;
-            temp2.prev = newNode;
-            newNode.next = temp2;
-
-            size++;
+            
         }
 
         public void RemoveFirst()
         {
-            if(size == 0)
-            {
-                Console.WriteLine("Size is 0");
+            if (head == null)
                 return;
-            }
 
-            Node temp = head.next;
-            head = null;
-            head = temp;
+            Node temp = head;
+            head = head.next;
+            temp = null;
             size--;
         }
 
         public void RemoveLast()
         {
-            if(size == 0)
-            {
-                Console.WriteLine("Size is 0");
-                return;
-            }
+            Node current = head;
 
-            Node temp1 = tail.prev;
+            if (head == null)
+                return;
+
+            //Tail 없을 때
+            //while (current.next.next != null)
+            //    current = current.next;
+
+            //Node temp = current.next;
+            //temp.prev = null;
+            //current.next = null;
+            //tail = current;
+            //size--;
+
+
+            //Tail 있을 때
+            Node temp = tail.prev;
+            temp.next = null;
+            tail.prev = null;
             tail = null;
-            tail = temp1;
-            tail.next = null;
-            size--;
-        }
-
-        public void RemoveAt(int index)
-        {
-            if(index == 0)
-            {
-                RemoveFirst();
-                return;
-            }
-            else if(index == size - 1)
-            {
-                RemoveLast();
-                return;
-            }
-            else if (index > size-1)
-            {
-                Console.WriteLine("Index out of range");
-                return;
-            }
-
-            if (size == 0)
-            {
-                Console.WriteLine("Size is 0");
-                return;
-            }
-
-            Node current;
-
-            if (index > size/2)
-            {
-                current = tail;
-
-                int step = (size - 1) - index;
-
-                while(step != 0)
-                {
-                    current = current.prev;
-                    step--;
-                }
-            }
-            else
-            {
-                current = head;
-
-                while (index != 0)
-                {
-                    current = current.next;
-                    index--;
-                }
-            }
-
-            Node temp1 = current.prev;
-            Node temp2 = current.next;
-
-            temp1.next = temp1.next.next;
-            temp2.prev = temp2.prev.prev;
-
-            current = null;
-
+            tail = temp;
             size--;
         }
 
@@ -211,12 +179,20 @@ namespace Algo
         {
             Node current = head;
 
-            while (size != 0)
+            if (head == null)
+            {
+                Console.WriteLine("No nodes");
+                return;
+            }
+
+            do
             {
                 Console.WriteLine(current.data);
                 current = current.next;
-                size--;
             }
+            while (current.next != null);
+
+            Console.WriteLine(current.data);
         }
     }
 }
