@@ -11,9 +11,9 @@ namespace Algo
 {
     public class SinglyLinkedList
     {
-        private Node head;
-        private Node tail;
-        private int size;
+        public Node head;
+        public Node tail;
+        public int size;
 
         public class Node
         {
@@ -143,7 +143,17 @@ namespace Algo
             Node current = head;
 
             if (head == null)
+            {
                 return;
+
+            }
+            else if(head.next == null)
+            {
+                head = null;
+                tail = null;
+                size--;
+                return;
+            }
 
             while(current.next.next != null)
                 current = current.next;
