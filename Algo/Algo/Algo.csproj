@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DoublyLinkedList.cs" />
+    <Compile Include="DynamicArray.cs" />
     <Compile Include="SinglyLinkedList.cs" />
     <Compile Include="LinkedStack.cs" />
     <Compile Include="Program.cs" />
