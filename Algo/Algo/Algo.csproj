@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CircularArray.cs" />
     <Compile Include="DoublyLinkedList.cs" />
     <Compile Include="DynamicArray.cs" />
     <Compile Include="SinglyLinkedList.cs" />

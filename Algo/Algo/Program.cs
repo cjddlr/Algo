@@ -12,7 +12,18 @@ namespace Algo
 
         static void Main(string[] args)
         {
+            CircularArray array = new CircularArray();
+            array.Add(1);
+            array.Add(2);
+            array.Add(3);
+            array.Add(4);
+            array.Add(5);
+            array.Add(6);
+            array.Add(7);
+            array.Add(8);
+            array.Add(9);
 
+            array.PrintAll();
         }
 
         static void QuickSort(int[] arr, int L, int R)
