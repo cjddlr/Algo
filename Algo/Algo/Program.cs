@@ -21,9 +21,7 @@ namespace Algo
             list.AddLast(5);
             list.AddLast(6);
 
-            list.AddAt(4, 99);
-
-            list.RemoveLast();
+            list.RemoveAt(0);
 
 
             list.PrintAll();

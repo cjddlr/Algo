@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -54,7 +55,7 @@ namespace Algo
 
                 var count = size - index;
 
-                while (--index != 0)
+                while (--count != 0)
                     current = current.prev;
 
                 Node temp1 = current.prev;
@@ -132,9 +133,51 @@ namespace Algo
             //size++;
         }
 
-        public void RemoveAt()
+        public void RemoveAt(int index)
         {
-            
+            Node current;
+
+            if (head == null)
+                return;
+
+            if (index == 0)
+            {
+                RemoveFirst();
+                return;
+            }
+            else if(index >= size - 1)
+            {
+                RemoveLast();
+                return;
+            }
+
+            if(index > size / 2)
+            {
+                current = tail;
+                int count = size - index;
+
+                while(--count != 0)
+                    current = current.prev;
+            }
+            else
+            {
+                current = head;
+
+                while (index != 0)
+                {
+                    current = current.next;
+                    index--;
+                }
+            }
+
+            Node temp1 = current.prev;
+            Node temp2 = current.next;
+
+            temp1.next = temp2;
+            temp2.prev = temp1;
+            current = null;
+
+            size--;
         }
 
         public void RemoveFirst()
@@ -163,8 +206,6 @@ namespace Algo
             //temp.prev = null;
             //current.next = null;
             //tail = current;
-            //size--;
-
 
             //Tail 있을 때
             Node temp = tail.prev;
@@ -172,6 +213,7 @@ namespace Algo
             tail.prev = null;
             tail = null;
             tail = temp;
+
             size--;
         }
 
