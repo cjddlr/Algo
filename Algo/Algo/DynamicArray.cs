@@ -10,6 +10,7 @@ namespace Algo
     {
         int count;
         int sizeLimit = 5;
+        int EXTENDING_FACTOR = 5;
         private int[] arr;
 
         public DynamicArray()
@@ -22,7 +23,7 @@ namespace Algo
         {
             if (count == sizeLimit)
             {
-                sizeLimit += 5;
+                sizeLimit += EXTENDING_FACTOR;
 
                 int[] tempArr = new int[sizeLimit];
                 Array.Copy(arr, tempArr, count);
