@@ -12,18 +12,7 @@ namespace Algo
 
         static void Main(string[] args)
         {
-            CircularArray array = new CircularArray();
-            array.Add(1);
-            array.Add(2);
-            array.Add(3);
-            array.Add(4);
-            array.Add(5);
-            array.Add(6);
-            array.Add(7);
-            array.Add(8);
-            array.Add(9);
 
-            array.PrintAll();
         }
 
         static void QuickSort(int[] arr, int L, int R)
@@ -100,91 +89,6 @@ namespace Algo
             {
                 Console.WriteLine(each);
             }
-        }
-    }
-
-    class ArrayStack<T>
-    {
-        public ArrayStack()
-        {
-            items = new T[0];
-        }
-
-        int top;
-        int maxSize = 10;
-        T[] items;
-
-        public void Push(T value)
-        {
-            T[] newItems = new T[top + 1];
-            items.CopyTo(newItems, 0);
-            items = newItems;
-
-            items[top] = value;
-            top++;
-        }
-
-        public T Pop()
-        {
-            if (top == 0)
-            {
-                throw new InvalidOperationException("Empty");
-            }
-
-            top--;
-            return items[top];
-        }
-
-        public void Clear()
-        {
-            top = 0;
-        }
-
-        public bool isEmpty()
-        {
-            return items.Length == 0 ? true : false;
-        }
-    }
-
-    class Queue<T>
-    {
-        public Queue()
-        {
-            items = new T[0];
-        }
-
-        T[] items;
-        int size;
-
-        public void Enqueue(T value)
-        {
-            size++;
-            T[] newItems = new T[size];
-            items.CopyTo(newItems, 0);
-            items = newItems;
-            items[size - 1] = value;
-        }
-
-        public T Dequeue()
-        {
-            if (size == 0)
-            {
-                Console.WriteLine("Empty");
-            }
-
-            size--;
-            var result = items[0];
-            T[] newItems = new T[size];
-            //items.CopyTo(newItems, 0);
-            Array.Copy(items, 1, newItems, 0, size);
-            items = newItems;
-
-            return result;
-        }
-
-        public int Count()
-        {
-            return items.Length;
         }
     }
 
