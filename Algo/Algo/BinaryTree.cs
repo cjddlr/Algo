@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,21 +9,19 @@ namespace Algo
 {
     public class BinaryTree<T>
     {
-        public BinaryTree(T root)
+        public BinaryTree(T rootData)
         {
-            this.root = new BinaryTreeNode<T>(root);
+            root = new BinaryTreeNode<T>(rootData);
         }
 
         public BinaryTreeNode<T> root;
-
-
 
         public void PreorderTraversal()
         {
             PreorderTraversal(root);
         }
 
-        private void PreorderTraversal(BinaryTreeNode<T> node)
+        public void PreorderTraversal(BinaryTreeNode<T> node)
         {
             if (node == null)
                 return;

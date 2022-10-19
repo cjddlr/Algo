@@ -97,7 +97,18 @@ namespace Algo
             tail.next = newNode;
             tail = newNode;
             size++;
+        }
 
+        public Node AddLastRec(int data, Node head)
+        {
+            if (head == null)
+            {
+                head = new Node(data);
+                return head;
+            }
+
+            head.next = AddLastRec(data, head.next);
+            return head;
         }
 
         public void RemoveAt(int index)
