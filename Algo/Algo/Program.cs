@@ -12,12 +12,17 @@ namespace Algo
 
         static void Main(string[] args)
         {
-            var bt = new ArrayBinaryTree(7);
+            var bt = new BinaryTree<int>(0);
+            bt.root.left = new BinaryTreeNode<int>(1);
+            bt.root.right = new BinaryTreeNode<int>(2);
+            bt.root.left.left = new BinaryTreeNode<int>(3);
+            bt.root.left.right = new BinaryTreeNode<int>(4);
+            bt.root.right.left = new BinaryTreeNode<int>(5);
+            bt.root.right.right = new BinaryTreeNode<int>(6);
 
-            bt.root = "A";
 
-            bt.SetLeft(0, "B");
-            bt.SetRight(0, "C");
+
+            bt.PostorderIterative();
         }
 
         static void QuickSort(int[] arr, int L, int R)
