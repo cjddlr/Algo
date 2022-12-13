@@ -12,19 +12,34 @@ namespace Algo
 
         static void Main(string[] args)
         {
-            var bt = new BinaryTree<int>(0);
-            bt.root.left = new BinaryTreeNode<int>(1);
-            bt.root.right = new BinaryTreeNode<int>(2);
-            bt.root.left.left = new BinaryTreeNode<int>(3);
-            bt.root.left.right = new BinaryTreeNode<int>(4);
-            bt.root.right.left = new BinaryTreeNode<int>(5);
-            bt.root.right.right = new BinaryTreeNode<int>(6);
+            BubbleSort(arr, arr.Length-1);
 
-
-
-            bt.PostorderIterative();
+            foreach(var each in arr)
+            {
+                Console.WriteLine(each);
+            }
         }
 
+        
+
+        static void Swap(int[] arr, int a, int b)
+        {
+            var temp = arr[a];
+            arr[a] = arr[b];
+            arr[b] = temp;
+        }
+
+        
+
+        static void PrintAll(int[] arr)
+        {
+            foreach (var each in arr)
+            {
+                Console.WriteLine(each);
+            }
+        }
+
+        #region Sort
         static void QuickSort(int[] arr, int L, int R)
         {
             int left = L;
@@ -59,13 +74,6 @@ namespace Algo
             }
         }
 
-        static void Swap(int[] arr, int a, int b)
-        {
-            var temp = arr[a];
-            arr[a] = arr[b];
-            arr[b] = temp;
-        }
-
         static void SelectionSort(int[] arr)
         {
             int minimumPos = 0;
@@ -93,13 +101,21 @@ namespace Algo
             }
         }
 
-        static void PrintAll(int[] arr)
+        static void BubbleSort(int[] arr, int last)
         {
-            foreach (var each in arr)
+            if(last > 0)
             {
-                Console.WriteLine(each);
+                for(int i=0; i<last; i++)
+                {
+                    if(arr[i] > arr[i+1])
+                    {
+                        Swap(arr, i, i+1);
+                    }
+                }
+                BubbleSort(arr, last - 1);
             }
         }
+        #endregion
     }
 
     class HashTable
