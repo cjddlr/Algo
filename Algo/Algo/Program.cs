@@ -12,9 +12,9 @@ namespace Algo
 
         static void Main(string[] args)
         {
-            BubbleSort(arr, arr.Length-1);
+            InsertionSort(arr);
 
-            foreach(var each in arr)
+            foreach (var each in arr)
             {
                 Console.WriteLine(each);
             }
@@ -28,8 +28,6 @@ namespace Algo
             arr[a] = arr[b];
             arr[b] = temp;
         }
-
-        
 
         static void PrintAll(int[] arr)
         {
@@ -113,6 +111,22 @@ namespace Algo
                     }
                 }
                 BubbleSort(arr, last - 1);
+            }
+        }
+
+        static void InsertionSort(int[] arr)
+        {
+            for(int i=0; i<arr.Length; i++)
+            {
+                for(int j=i; j>=0; j--)
+                {
+                    if (j != 0 && arr[j - 1] > arr[j])
+                    {
+                        var temp = arr[j - 1];
+                        arr[j - 1] = arr[j];
+                        arr[j] = temp;
+                    }
+                }
             }
         }
         #endregion
