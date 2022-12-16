@@ -8,11 +8,11 @@ namespace Algo
 {
     public class Program
     {
-        static int[] arr = new int[] { 9, 4, 1, 5, 7, 2, 8, 11, 50, 81, 100, 92, 53, 78, 41, 111 };
+        static int[] arr = new int[] { 9, 4, 1, 5, 7, 2, 8, 11, 50, 18};
 
         static void Main(string[] args)
         {
-            InsertionSort(arr);
+            QuickSort2(arr, 0, arr.Length-1);
 
             foreach (var each in arr)
             {
@@ -38,7 +38,8 @@ namespace Algo
         }
 
         #region Sort
-        static void QuickSort(int[] arr, int L, int R)
+        //단순히 중간값을 pivot으로 잡은 버전
+        static void QuickSort1(int[] arr, int L, int R)
         {
             int left = L;
             int right = R;
@@ -63,13 +64,52 @@ namespace Algo
 
             if (L < right)
             {
-                QuickSort(arr, L, right);
+                QuickSort1(arr, L, right);
             }
 
             if (left < R)
             {
-                QuickSort(arr, left, R);
+                QuickSort1(arr, left, R);
             }
+        }
+
+        //Split까지 구현한 버전
+        static void QuickSort2(int[] arr, int L, int R)
+        {
+            if(L < R)
+            {
+                int pivot = Split(arr, L, R);
+
+                QuickSort2(arr, L, pivot-1);
+                QuickSort2(arr, pivot+1, R);
+            }
+        }
+
+        //pivot 값을 구하는 함수임
+        static int Split(int[] arr, int left, int right)
+        {
+            int indexL = left;
+            int indexR = right;
+
+            int pivot = arr[left];
+
+            while(indexL < indexR)
+            {
+                while (arr[indexL] < pivot)
+                    indexL++;
+
+                while (arr[indexR] > pivot)
+                    indexR--;
+
+                if(indexL < indexR)
+                {
+                    var temp = arr[indexL];
+                    arr[indexL] = arr[indexR];
+                    arr[indexR] = temp;
+                }
+            }
+
+            return indexR;
         }
 
         static void SelectionSort(int[] arr)

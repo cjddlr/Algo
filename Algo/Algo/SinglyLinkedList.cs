@@ -99,7 +99,7 @@ namespace Algo
             size++;
         }
 
-        public Node AddLastRec(int data, Node head)
+        public Node AddLastRecursive(int data, Node head)
         {
             if (head == null)
             {
@@ -107,7 +107,7 @@ namespace Algo
                 return head;
             }
 
-            head.next = AddLastRec(data, head.next);
+            head.next = AddLastRecursive(data, head.next);
             return head;
         }
 
