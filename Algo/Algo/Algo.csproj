@@ -48,6 +48,7 @@
     <Compile Include="CircularArray.cs" />
     <Compile Include="DoublyLinkedList.cs" />
     <Compile Include="DynamicArray.cs" />
+    <Compile Include="NLinkNode.cs" />
     <Compile Include="Queue.cs" />
     <Compile Include="SinglyLinkedList.cs" />
     <Compile Include="LinkedStack.cs" />

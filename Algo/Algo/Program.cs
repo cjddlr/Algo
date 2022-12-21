@@ -12,11 +12,23 @@ namespace Algo
 
         static void Main(string[] args)
         {
-            QuickSort2(arr, 0, arr.Length-1);
+            var a = new NLinkNode("a");
+            var b = new NLinkNode("b");
+            var c = new NLinkNode("c");
+            var d = new NLinkNode("d");
 
-            foreach (var each in arr)
+            a.Links.Add(b);
+            a.Links.Add(c);
+            a.Links.Add(d);
+
+            b.Links.Add(new NLinkNode("e"));
+            b.Links.Add(new NLinkNode("f"));
+
+            d.Links.Add(new NLinkNode("g"));
+
+            foreach(var each in a.Links)
             {
-                Console.WriteLine(each);
+                Console.WriteLine(each.Data);
             }
         }
 
