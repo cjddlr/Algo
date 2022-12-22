@@ -15,7 +15,7 @@ namespace Algo
 
         private object[] arr;
 
-        public object root
+        public object Root
         {
             get { return arr[0]; }
             set { arr[0] = value; }
@@ -43,37 +43,29 @@ namespace Algo
 
         public object GetParent(int childIndex)
         {
-            if (arr.Length == 0 || arr == null || childIndex == 0)
-                throw new ApplicationException("Error");
+            if (childIndex == 0)
+                return null;
 
             int parentIndex = (childIndex - 1) / 2;
-
             return arr[parentIndex];
         }
 
         public object GetLeft(int parentIndex)
         {
             int leftIndex = parentIndex * 2 + 1;
-
             return arr[leftIndex];
         }
 
         public object GetRight(int parentIndex)
         {
             int rightIndex = parentIndex * 2 + 2;
-
             return arr[rightIndex];
         }
 
         public void PrintTree()
         {
-            if (arr.Length == 0 || arr == null)
-                throw new ApplicationException("Error");
-
-            for (int i=0; i<arr.Length; i++)
-            {
+            for (int i = 0; i < arr.Length; i++)
                 Console.WriteLine("{0}", arr[i] ?? "-");
-            }
         }
     }
 }

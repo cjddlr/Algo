@@ -28,5 +28,74 @@ namespace Algo
         }
 
         public BinaryTreeNode<T> Root { get; private set; }
+
+        public void PreorderTraversal()
+        {
+            PreorderTraversal(Root);
+        }
+
+        private void PreorderTraversal(BinaryTreeNode<T> node)
+        {
+            if (node == null)
+                return;
+
+            Console.WriteLine("{0}", node.data);
+
+            PreorderTraversal(node.left);
+            PreorderTraversal(node.right);
+        }
+
+        public void InorderTraversal()
+        {
+            InorderTraversal(Root);
+        }
+
+        private void InorderTraversal(BinaryTreeNode<T> node)
+        {
+            if (node == null)
+                return;
+
+            InorderTraversal(node.left);
+            Console.WriteLine(node.data);
+            InorderTraversal(node.right);
+        }
+
+        public void PostorderTraversal()
+        {
+            PostorderTraversal(Root);
+        }
+
+        private void PostorderTraversal(BinaryTreeNode<T> node)
+        {
+            if (node == null)
+                return;
+
+            PostorderTraversal(node.left);
+            PostorderTraversal(node.right);
+            Console.WriteLine(node.data);
+        }
+
+        public void IterativePreorder()
+        {
+            if (Root == null)
+                return;
+
+            var stack = new Stack<BinaryTreeNode<T>>();
+
+            stack.Push(Root);
+
+            while(stack.Count > 0)
+            {
+                var node = stack.Pop();
+
+                Console.WriteLine(node.data);
+
+                if (node.right != null)
+                    stack.Push(node.right);
+
+                if (node.left != null)
+                    stack.Push(node.left);
+            }
+        }
     }
 }
