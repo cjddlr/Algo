@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="ArrayBinaryTree.cs" />
     <Compile Include="ArrayStack.cs" />
+    <Compile Include="BinarySearchTree.cs" />
     <Compile Include="CircularArray.cs" />
     <Compile Include="DoublyLinkedList.cs" />
     <Compile Include="DynamicArray.cs" />
