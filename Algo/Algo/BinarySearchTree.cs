@@ -15,16 +15,16 @@ namespace Algo
                 this.data = data;
             }
 
-            public P data { get; set; }
-            public Node<P> left { get; set; }
-            public Node<P> right { get; set; }
+            public P data;
+            public Node<P> left;
+            public Node<P> right;
         }
 
         private Node<T> root;
 
         public void Add(T data)
         {
-            if (root == null)
+            if(root == null)
             {
                 root = new Node<T>(data);
                 return;
@@ -38,9 +38,9 @@ namespace Algo
 
                 if (cmp == 0)
                 {
-                    throw new ApplicationException("Duplicate");
+                    throw new ApplicationException("Same");
                 }
-                else if(cmp < 1)
+                else if (cmp < 0)
                 {
                     if(node.left == null)
                     {
@@ -54,7 +54,7 @@ namespace Algo
                 }
                 else
                 {
-                    if(node.right == null)
+                    if (node.right == null)
                     {
                         node.right = new Node<T>(data);
                         break;
@@ -71,24 +71,17 @@ namespace Algo
         {
             var node = root;
 
-            while (node != null)
+            while(node != null)
             {
                 int cmp = data.CompareTo(node.data);
 
                 if (cmp == 0)
-                {
                     return true;
-                }
                 else if (cmp < 0)
-                {
                     node = node.left;
-                }
                 else
-                {
                     node = node.right;
-                }
             }
-
             return false;
         }
 
@@ -97,17 +90,16 @@ namespace Algo
             return SearchRecursive(root, data);
         }
 
-        private bool SearchRecursive(Node<T> node, T data)
+        private bool SearchRecursive(Node<T> root, T data)
         {
-            if (node == null)
-                return false;
+            if (root == null) return false;
 
-            int cmp = data.CompareTo(node.data);
+            int cmp = data.CompareTo(root.data);
 
             if (cmp == 0)
                 return true;
 
-            return SearchRecursive(node.left, data) || SearchRecursive(node.right, data);
+            return SearchRecursive(root.left, data) || SearchRecursive(root.right, data);
         }
 
         public bool Remove(T data)
@@ -119,10 +111,10 @@ namespace Algo
             {
                 int cmp = data.CompareTo(node.data);
 
-                if (cmp == 0)
+                if(cmp == 0)
                 {
                     break;
-                }
+                }    
                 else if(cmp < 0)
                 {
                     prev = node;
@@ -135,97 +127,48 @@ namespace Algo
                 }
             }
 
-            if(node == null)
-                return false;
+            if (node == null) return false;
 
-            if(node.left == null && node.right == null)         //자식노드가 0개인 경우
+            if (node.left == null && node.right == null)            //case : 자식노드 0개
             {
-                if(prev.left == node)
-                {
-                    prev.left = null;
-                }
-                else
-                {
-                    prev.right = null;
-                }
-
                 node = null;
+                prev.left = null;
+                prev.right = null;
             }
-            else if(node.left == null || node.right == null)    //자식노드가 1개인 경우
+            else if(node.left == null || node.right == null)        //case : 자식노드 1개
             {
-                var child = (node.left != null) ? node.left : node.right;
+                var child = node.left != null ? node.left : node.right;
 
-                if(prev.left == node)
-                {
+                if (prev.left == node)
                     prev.left = child;
-                }
                 else
-                {
                     prev.right = child;
-                }
+
                 node = null;
             }
-            else                                                //자식노드가 2개인 경우
+            else                                                    //case : 자식노드 2개
             {
-                var pre = node;
                 var min = node.right;
 
-                while (min.left != null)
+                while (min.left != null)    //입력노드의 오른쪽 노드의 가장 왼쪽 노드 탐색
                 {
-                    pre = min;
+                    prev = min;
                     min = min.left;
                 }
 
                 node.data = min.data;
 
-                if(min.right != null)
+                if (pre.left == min)
                 {
-                    if (pre.left == min)
-                    {
-                        pre.left = min.right;
-                    }
-                    else
-                    {
-                        pre.right = min.right;
-                    }
+                    pre.left = min.right;
+                }
+                else
+                {
+                    pre.right = min.right;
+
                 }
             }
             return true;
-        }
-
-        public void PreorderTraversal()
-        {
-            PreorderTraversal(this.root);
-        }
-
-        private void PreorderTraversal(Node<T> root)
-        {
-            if (root == null)
-                return;
-
-            Console.WriteLine(root.data);
-            PreorderTraversal(root.left);
-            PreorderTraversal(root.right);
-        }
-
-        private void InorderTraversal(Node<T> root)
-        {
-            if (root == null)
-                return;
-
-            InorderTraversal(root.left);
-            Console.WriteLine(root);
-            InorderTraversal(root.right);
-        }
-
-        private void PostorderTraversal(Node<T> root)
-        {
-            if (root == null)
-                return;
-
-            PostorderTraversal(root.left);
-            PostorderTraversal(root.right);
-            Console.WriteLine(root);
         }
     }
 }
