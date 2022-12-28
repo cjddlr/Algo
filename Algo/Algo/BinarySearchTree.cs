@@ -25,7 +25,10 @@ namespace Algo
         public void Add(T data)
         {
             if (root == null)
+            {
                 root = new Node<T>(data);
+                return;
+            }
 
             var node = root;
 
@@ -175,17 +178,54 @@ namespace Algo
 
                 node.data = min.data;
 
-                if (pre.left == min)
+                if(min.right != null)
                 {
-                    pre.left = min.right;
-                }
-                else
-                {
-                    pre.right = min.right;
-
+                    if (pre.left == min)
+                    {
+                        pre.left = min.right;
+                    }
+                    else
+                    {
+                        pre.right = min.right;
+                    }
                 }
             }
             return true;
+        }
+
+        public void PreorderTraversal()
+        {
+            PreorderTraversal(this.root);
+        }
+
+        private void PreorderTraversal(Node<T> root)
+        {
+            if (root == null)
+                return;
+
+            Console.WriteLine(root.data);
+            PreorderTraversal(root.left);
+            PreorderTraversal(root.right);
+        }
+
+        private void InorderTraversal(Node<T> root)
+        {
+            if (root == null)
+                return;
+
+            InorderTraversal(root.left);
+            Console.WriteLine(root);
+            InorderTraversal(root.right);
+        }
+
+        private void PostorderTraversal(Node<T> root)
+        {
+            if (root == null)
+                return;
+
+            PostorderTraversal(root.left);
+            PostorderTraversal(root.right);
+            Console.WriteLine(root);
         }
     }
 }

@@ -12,6 +12,16 @@ namespace Algo
 
         static void Main(string[] args)
         {
+            BinarySearchTree<int> tree = new BinarySearchTree<int>();
+
+            tree.Add(1);
+            tree.Add(3);
+            tree.Add(2);
+            tree.Add(9);
+            tree.Add(5);
+            tree.Add(6);
+
+            tree.PreorderTraversal();
 
 
         }
