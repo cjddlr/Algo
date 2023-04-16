@@ -12,18 +12,18 @@ namespace Algo
 
         static void Main(string[] args)
         {
-            BinarySearchTree<int> tree = new BinarySearchTree<int>();
+            ArrayList<int> arr = new ArrayList<int>();
 
-            tree.Add(1);
-            tree.Add(3);
-            tree.Add(2);
-            tree.Add(9);
-            tree.Add(5);
-            tree.Add(6);
+            arr.AddAt(0, 1);
+            arr.AddAt(1, 2);
+            arr.AddAt(2, 3);
 
-            tree.PreorderTraversal();
+            arr.RemoveAt(4);
 
-
+            for(int i=0; i<arr.size; i++)
+            {
+                Console.WriteLine(arr.Get(i));
+            }
         }
 
         
@@ -280,219 +280,6 @@ namespace Algo
         private const int INITIAL_SIZE = 16;
         private int size;
         private Node[] buckets;
-    }
-
-    class ArrayList<T>
-    {
-        public ArrayList()
-        {
-            size = 0;
-            arr = new T[size];
-        }
-
-        public T[] arr;
-        int size;
-
-        public void AddAt(int index, T data)
-        {
-            if (index < 0)
-            {
-                IndexError();
-                return;
-            }
-            else
-            {
-                if (size == 0)
-                {
-                    AddFirstTime(data);
-                    return;
-                }
-
-                if (index == 0)
-                {
-                    AddFirst(data);
-                    return;
-                }
-
-                if (index == size - 1)
-                {
-                    AddLast(data);
-                    return;
-                }
-
-                if (index > size - 1)
-                {
-                    AddLast(data);
-                    return;
-                }
-
-                size++;
-                T[] tempArray = new T[size];
-
-                Array.Copy(arr, 0, tempArray, 0, index);
-                Array.Copy(arr, index, tempArray, index + 1, arr.Length - index);
-                arr = tempArray;
-                arr[index] = data;
-            }
-        }
-
-        public void AddFirst(T data)
-        {
-            if (size == 0)
-            {
-                AddFirstTime(data);
-                return;
-            }
-
-            T[] tempArr = new T[size++];
-
-            Array.Copy(arr, 0, tempArr, 1, size - 1);
-
-            arr = tempArr;
-            arr[0] = data;
-        }
-
-        public void AddLast(T data)
-        {
-            if (size == 0)
-            {
-                AddFirstTime(data);
-                return;
-            }
-
-            size++;
-            T[] tempArr = new T[size];
-            Array.Copy(arr, 0, tempArr, 0, size - 1);
-            arr = tempArr;
-            arr[size - 1] = data;
-        }
-
-        public void AddFirstTime(T data)
-        {
-            size++;
-            T[] tempArr = new T[size];
-
-            arr = tempArr;
-            arr[0] = data;
-        }
-
-        public T Get(int index)
-        {
-            if (index > size - 1)
-            {
-                IndexError();
-            }
-
-            return arr[index];
-        }
-
-        public void RemoveAt(int index)
-        {
-            if (index < 0 || index > size - 1)
-            {
-                IndexError();
-                return;
-            }
-            else
-            {
-                if (size == 1)
-                {
-                    size--;
-                    arr = new T[size];
-                }
-                else if (index == 0)
-                {
-                    RemoveFirst();
-                }
-                else if (index == size - 1)
-                {
-                    RemoveLast();
-                }
-                else
-                {
-                    size--;
-                    T[] tempArr = new T[size];
-
-                    Array.Copy(arr, 0, tempArr, 0, 2);
-                    Array.Copy(arr, index+1, tempArr, index, arr.Length - index - 1);
-
-                    arr = tempArr;
-                }
-            }
-        }
-
-        public void RemoveFirst()
-        {
-            if (size <= 0)
-            {
-                IndexError();
-                return;
-            }
-            else if (size == 1)
-            {
-                arr = new T[0];
-            }
-
-            size--;
-            T[] tempArr = new T[size];
-            Array.Copy(arr, 1, tempArr, 0, arr.Length - 1);
-            arr = tempArr;
-        }
-
-        public void RemoveLast()
-        {
-            if (size <= 0)
-            {
-                IndexError();
-                return;
-            }
-            else if (size == 1)
-            {
-                arr = new T[0];
-            }
-
-            size--;
-            T[] tempArr = new T[size];
-            Array.Copy(arr, 0, tempArr, 0, arr.Length - 1);
-            arr = tempArr;
-        }
-
-        public void IndexError()
-        {
-            Console.WriteLine("Index out of range");
-        }
-
-        public int GetSize()
-        {
-            return size;
-        }
-
-        public int IndexOf(T data)
-        {
-            for(int i=0; i<size; i++)
-            {
-                if (arr[i].Equals(data))
-                    return i;
-            }
-            return -1;
-        }
-
-        public int Count()
-        {
-            return size;
-        }
-
-        public ListIterator listIterator()
-        {
-            return new ListIterator();
-        }
-
-        public class ListIterator
-        {
-            private int nextIndex = 0;
-
-
-        }
     }
 
     class Node

@@ -66,6 +66,7 @@ namespace Algo
                 size++;
                 return;
             }
+
             newNode.next = head;
             head = newNode;
             size++;
@@ -156,7 +157,6 @@ namespace Algo
             if (head == null)
             {
                 return;
-
             }
             else if(head.next == null)
             {

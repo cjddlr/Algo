@@ -158,13 +158,13 @@ namespace Algo
 
                 node.data = min.data;
 
-                if (pre.left == min)
+                if (prev.left == min)
                 {
-                    pre.left = min.right;
+                    prev.left = min.right;
                 }
                 else
                 {
-                    pre.right = min.right;
+                    prev.right = min.right;
 
                 }
             }
