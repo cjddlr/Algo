@@ -9,60 +9,61 @@ using System.Xml.Serialization.Advanced;
 
 namespace Algo
 {
-    public class SinglyLinkedList
+    public class SinglyLinkedList<T>
     {
-        public Node head;
-        public Node tail;
+        public Node<T> head;
         public int size;
 
-        public class Node
+        public class Node<T>
         {
-            public Node(int data)
+            public Node(T data)
             {
                 this.data = data;
             }
 
-            public int data;
-            public Node next;
+            public T data;
+            public Node<T> next;
         }
 
-        public void AddAt(int index, int data)
+        public void AddAt(int index, T data)
         {
-            Node newNode = new Node(data);
-            Node current = head;
+            Node<T> newNode = new Node<T>(data);
+            Node<T> current = head;
 
-            if(head == null)
+            if(size == 0)
             {
                 head = newNode;
-                tail = head;
                 size++;
                 return;
             }
 
-            if (index == 0)
-                AddFirst(data);
-            else if (index >= size - 1)
-                AddLast(data);
-
-
-            while(--index != 0)
+            if (index <= 0)
             {
-                current = current.next;
+                AddFirst(data);
+                return;
             }
+            
+            if (index >= size - 1)
+            {
+                AddLast(data);
+                return;
+            }
+
+            while (--index != 0)
+                current = current.next;
 
             newNode.next = current.next;
             current.next = newNode;
             size++;
         }
 
-        public void AddFirst(int data)
+        public void AddFirst(T data)
         {
-            Node newNode = new Node(data);
+            Node<T> newNode = new Node<T>(data);
 
-            if(head == null)
+            if(size == 0)
             {
                 head = newNode;
-                tail = head;
                 size++;
                 return;
             }
@@ -72,59 +73,58 @@ namespace Algo
             size++;
         }
 
-        public void AddLast(int data)
+        public void AddLast(T data)
         {
-            Node newNode = new Node(data);
-            Node current = head;
+            Node<T> newNode = new Node<T>(data);
+            Node<T> current = head;
 
-            if (head == null)
+            if (size == 0)
             {
                 head = newNode;
-                tail = head;
                 size++;
                 return;
             }
 
-            ////Tail 없을때
-            //while (current.next != null)
-            //    current = current.next;
+            while (current.next != null)
+                current = current.next;
 
-            //current.next = newNode;
-            //tail = newNode;
-            //size++;
-
-
-            //Tail 있을 때
-            tail.next = newNode;
-            tail = newNode;
+            current.next = newNode;
             size++;
         }
 
-        public Node AddLastRecursive(int data, Node head)
-        {
-            if (head == null)
-            {
-                head = new Node(data);
-                return head;
-            }
+        //public Node<T> AddLastRecursive(T data, Node<T> head)
+        //{
+        //    if (size == 0)
+        //    {
+        //        head = new Node<T>(data);
+        //        return head;
+        //    }
 
-            head.next = AddLastRecursive(data, head.next);
-            return head;
-        }
+        //    head.next = AddLastRecursive(data, head.next);
+        //    return head;
+        //}
 
         public void RemoveAt(int index)
         {
-            Node current = head;
+            Node<T> current = head;
 
-            if (head == null)
+            if (size == 0)
                 return;
 
-            if (index == 0)
+            if (size == 1)
+            {
+                head = null;
+                size--;
+                return;
+            }
+
+            if (index <= 0)
             {
                 RemoveFirst();
                 return;
             }
-            else if (index == size - 1)
+            
+            if (index >= size)
             {
                 RemoveLast();
                 return;
@@ -133,69 +133,44 @@ namespace Algo
             while(--index != 0)
                 current = current.next;
 
-            var temp1 = current.next.next;
-            current.next = null;
-            current.next = temp1;
+            current.next = current.next.next;
             size--;
         }
 
         public void RemoveFirst()
         {
-            if (head == null)
-                return;
-
-            Node temp1 = head.next;
-            head = null;
-            head = temp1;
+            Node<T> current = head;
+            Node<T> temp = current.next;
+            current = null;
+            head = temp;
             size--;
         }
 
         public void RemoveLast()
         {
-            Node current = head;
-
-            if (head == null)
-            {
-                return;
-            }
-            else if(head.next == null)
-            {
-                head = null;
-                tail = null;
-                size--;
-                return;
-            }
+            Node<T> current = head;
 
             while(current.next.next != null)
                 current = current.next;
 
             current.next = null;
-            tail = current;
             size--;
         }
 
         public void PrintAll()
         {
-            Node current = head;
+            Node<T> current = head;
 
-            if(head == null)
-            {
-                Console.WriteLine("No nodes");
-                return;
-            }
+            if (size == 0)
+                Console.WriteLine("Empty");
 
-            if (size == 1)
+            for(int i=0; i<size; i++)
             {
                 Console.WriteLine(current.data);
-                return;
-            }
 
-            do
-            {
-                Console.WriteLine(current.data);
-                current = current.next;
+                if (current.next != null)
+                    current = current.next;
             }
-            while (current != null);
         }
     }
 }

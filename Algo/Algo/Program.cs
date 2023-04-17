@@ -12,18 +12,7 @@ namespace Algo
 
         static void Main(string[] args)
         {
-            ArrayList<int> arr = new ArrayList<int>();
 
-            arr.AddAt(0, 1);
-            arr.AddAt(1, 2);
-            arr.AddAt(2, 3);
-
-            arr.RemoveAt(4);
-
-            for(int i=0; i<arr.size; i++)
-            {
-                Console.WriteLine(arr.Get(i));
-            }
         }
 
         

@@ -7,42 +7,25 @@ using System.Threading.Tasks;
 
 namespace Algo
 {
-    public class LinkedStack
+    public class LinkedStack<T>
     {
-        SinglyLinkedList list;
+        SinglyLinkedList<T> list;
 
         public LinkedStack()
         {
-            list = new SinglyLinkedList();
+            list = new SinglyLinkedList<T>();
         }
 
-        public void Push(int data)
+        public void Push(T data)
         {
             list.AddLast(data);
         }
 
-        public int Pop()
-        {
-            try
-            {
-                int result = list.tail.data;
 
-                list.RemoveLast();
-
-                return result;
-            }
-            catch
-            {
-                return -1;
-            }
-
-            //하나 남았을떄 removeLast 돌리면 에러남
-        }
 
         public void Clear()
         {
             list.head = null;
-            list.tail = null;
         }
 
         public bool isEmpty()
